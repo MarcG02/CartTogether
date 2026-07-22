@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ReactNode } from "react";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "Listo - Organiza tu compra, simplifica tu vida",
+  title: "Cart Together - Organiza tu compra, simplifica tu vida",
   description:
     "Transforma el caos del supermercado en una experiencia estructurada y agradable. Ahorra tiempo, reduce gastos innecesarios y planifica tus comidas con elegancia.",
 };
@@ -10,10 +15,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="es" className="light">
+    <html lang="es" className={cn("light", "font-sans", inter.variable)}>
       <head>
         {/* Google Fonts: Inter */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

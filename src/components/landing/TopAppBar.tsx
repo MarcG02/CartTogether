@@ -1,12 +1,18 @@
 import Image from "next/image";
-import LogoImg from "../../public/logo-text.png";
+import LogoImg from "../../../public/logo-text.png";
+import Link from "next/link";
 
 export default function TopAppBar() {
   return (
     <header className="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 shadow-sm bg-surface dark:bg-surface-dim">
-      <div className="flex items-center gap-sm">
-        <Image src={LogoImg} alt="Cart Together Logo" className="w-32 h-auto" />
-      </div>
+      <Link href="/" className="flex items-center gap-sm cursor-pointer">
+        <Image
+          src={LogoImg}
+          alt="Cart Together Logo"
+          className="w-32 h-auto"
+          loading="eager"
+        />
+      </Link>
       <div className="flex items-center gap-md">
         <nav className="hidden md:flex gap-md">
           <a

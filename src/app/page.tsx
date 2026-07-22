@@ -1,7 +1,7 @@
-import TopAppBar from "@/components/TopAppBar";
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import Footer from "@/components/Footer";
+import TopAppBar from "@/components/landing/TopAppBar";
+import Hero from "@/components/landing/Hero";
+import Features from "@/components/landing/Features";
+import Footer from "@/components/landing/Footer";
 
 export default function Home() {
   return (
