@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section className="w-full px-margin-mobile md:px-margin-desktop py-xl md:py-[120px] flex flex-col md:flex-row items-center gap-xl relative overflow-hidden">
@@ -22,9 +24,12 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-sm w-full sm:w-auto">
-          <button className="font-label-md text-label-md cursor-pointer bg-primary text-on-primary py-4 px-md rounded-lg hover:bg-surface-tint transition-colors w-full sm:w-auto text-center shadow-[0px_4px_20px_rgba(45,106,79,0.15)] active:scale-95">
+          <Link
+            href="/dashboard"
+            className="font-label-md text-label-md cursor-pointer bg-primary text-on-primary py-4 px-md rounded-lg hover:bg-surface-tint transition-colors w-full sm:w-auto text-center shadow-[0px_4px_20px_rgba(45,106,79,0.15)] active:scale-95"
+          >
             Empezar Gratis
-          </button>
+          </Link>
         </div>
 
         {/* Social Proof */}
