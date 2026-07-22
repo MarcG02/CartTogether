@@ -1,21 +1,27 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
 
 const NAV_ITEMS = [
   { icon: "dashboard", label: "Dashboard", href: "/dashboard" },
   { icon: "shopping_cart", label: "Listas Activas", href: "/active-list" },
   { icon: "restaurant_menu", label: "Recetas", href: "#" },
-  { icon: "category", label: "Categorías", href: "#" },
+  { icon: "category", label: "Categorías", href: "/categorias" },
   { icon: "archive", label: "Archivadas", href: "#" },
 ] as const;
+
+type NavItemProps = {
+  icon: string | ReactNode;
+  label: string;
+  href: string;
+  active?: boolean;
+};
 
 export default function SideNavBar() {
   const pathname = usePathname();
 
   function isActive(href: string, label: string) {
-    if (href === "#") return false;
-
     if (label === "Dashboard") {
       return pathname === "/dashboard";
     }
@@ -27,11 +33,15 @@ export default function SideNavBar() {
       );
     }
 
+    if (label === "Categorías") {
+      return pathname.startsWith("/categorias");
+    }
+
     return pathname === href;
   }
 
   return (
-    <aside className="hidden md:flex flex-col justify-between fixed left-0 top-16 h-[calc(100vh-64px)] w-64 p-4 bg-surface-container-lowest dark:bg-surface-container-low">
+    <aside className="bg-surface-container-lowest dark:bg-surface-container-low fixed top-16 left-0 hidden h-[calc(100vh-64px)] w-64 flex-col justify-between p-4 md:flex">
       <div>
         <div className="mb-lg px-sm">
           <h2 className="font-headline-md text-headline-md text-on-surface font-semibold">
@@ -42,7 +52,7 @@ export default function SideNavBar() {
           </p>
         </div>
 
-        <nav className="flex flex-col gap-xs">
+        <nav className="gap-xs flex flex-col">
           {NAV_ITEMS.map((item) => (
             <NavItem
               key={item.label}
@@ -54,12 +64,12 @@ export default function SideNavBar() {
           ))}
         </nav>
 
-        <button className="cursor-pointer mt-md w-full bg-primary text-on-primary py-[16px] px-md rounded-full font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-sm">
+        <button className="mt-md bg-primary text-on-primary px-md font-label-md text-label-md hover:bg-surface-tint w-full cursor-pointer rounded-full py-[16px] shadow-sm transition-colors">
           Crear lista
         </button>
       </div>
 
-      <nav className="flex flex-col gap-xs mt-auto">
+      <nav className="gap-xs mt-auto flex flex-col">
         <NavItem icon="help" label="Centro de Ayuda" href="#" />
         <NavItem icon="logout" label="Cerrar sesión" href="#" />
       </nav>
@@ -68,17 +78,7 @@ export default function SideNavBar() {
 }
 
 /* ─── Nav Item ─── */
-function NavItem({
-  icon,
-  label,
-  href,
-  active = false,
-}: {
-  icon: string;
-  label: string;
-  href: string;
-  active?: boolean;
-}) {
+function NavItem({ icon, label, href, active = false }: NavItemProps) {
   const base =
     "flex items-center gap-sm px-sm py-sm rounded-lg transition-all active:translate-x-1";
   const state = active
