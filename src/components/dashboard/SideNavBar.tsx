@@ -45,10 +45,10 @@ export default function SideNavBar() {
       <div>
         <div className="mb-lg px-sm">
           <h2 className="font-headline-md text-headline-md text-on-surface font-semibold">
-            Welcome back
+            ¡Hola de nuevo!
           </h2>
           <p className="font-body-md text-body-md text-on-surface-variant mt-xs">
-            Shopping ready
+            Tu está lista
           </p>
         </div>
 

@@ -103,7 +103,7 @@ export default function ListDetailPage() {
         estimatedCost={estimatedCost}
       />
 
-      <div className="space-y-6 max-w-4xl">
+      <div className="space-y-6">
         {SAMPLE_CATEGORIES.map((category) => (
           <ListCategoryGroup key={category.name} category={category} />
         ))}

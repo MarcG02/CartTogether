@@ -1,3 +1,5 @@
+import AddProductDialog from "./AddProductDialog";
+
 interface ListPageHeaderProps {
   title: string;
   date: string;
@@ -29,16 +31,17 @@ export default function ListPageHeader({
       </div>
 
       <div className="flex items-center gap-3">
+        <AddProductDialog />
         <button
           type="button"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary-fixed-dim/20 transition-colors font-label-md text-label-md"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary-fixed-dim/20 transition-colors font-label-md text-label-md cursor-pointer"
         >
           <span className="material-symbols-outlined text-[20px]">share</span>
           Share List
         </button>
         <button
           type="button"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors font-label-md text-label-md"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors font-label-md text-label-md cursor-pointer"
         >
           <span className="material-symbols-outlined text-[20px]">print</span>
           Print
