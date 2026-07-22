@@ -143,7 +143,7 @@ export default function AddProductDialog({
 
         {/* ── Category chips ── */}
         <div className="-mx-1 pb-2">
-          <ScrollArea orientation="horizontal" className="w-full">
+          <ScrollArea orientation="horizontal" className="w-full pb-4">
             <div className="flex gap-2 px-1">
               <Button
                 onClick={() => setActiveCategory(null)}

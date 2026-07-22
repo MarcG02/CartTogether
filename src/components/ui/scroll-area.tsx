@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 
 import { cn } from "@/lib/utils";
@@ -12,12 +13,38 @@ function ScrollArea({
 }: ScrollAreaPrimitive.Root.Props & {
   orientation?: "vertical" | "horizontal" | "both";
 }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  /* ── Vertical → horizontal wheel conversion ── */
+  useEffect(() => {
+    if (orientation === "vertical") return;
+
+    const root = rootRef.current;
+    if (!root) return;
+
+    const viewport = root.querySelector<HTMLElement>(
+      '[data-slot="scroll-area-viewport"]',
+    );
+    if (!viewport) return;
+
+    const handler = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        viewport.scrollLeft += e.deltaY;
+      }
+    };
+
+    root.addEventListener("wheel", handler, { passive: false });
+    return () => root.removeEventListener("wheel", handler);
+  }, [orientation]);
+
   const showVertical = orientation === "vertical" || orientation === "both";
   const showHorizontal =
     orientation === "horizontal" || orientation === "both";
 
   return (
     <ScrollAreaPrimitive.Root
+      ref={rootRef}
       data-slot="scroll-area"
       className={cn("relative", className)}
       {...props}
